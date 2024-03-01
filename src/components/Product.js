@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Product({ product }) {
+function Product({ id, name, price, image }) {
   return (
-    <div className="border border-gray-300 rounded p-4 mb-4">
-      <Link to={`/product/${product.id}`}>
-        <img src={product.image} alt={product.name} className="w-full mb-2" />
-        <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-        <p className="text-gray-700">${product.price}</p>
+    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+      <Link to={`/product/${id}`}>
+        <img className="w-full" src={image} alt={name} />
       </Link>
+      <div className="px-6 py-4">
+        <div className="font-bold text-xl mb-2">{name}</div>
+        <p className="text-gray-700 text-base">${price.toFixed(2)}</p>
+      </div>
     </div>
   );
 }
