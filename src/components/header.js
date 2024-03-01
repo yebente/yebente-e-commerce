@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <header className="bg-gray-800 text-white p-4">
+    <header className="bg-gray-800 text-white py-4">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Yebente</h1>
+        <Link to="/" className="text-xl font-bold">Yebente</Link>
         <nav>
-          <ul className="flex">
-            <li className="mr-4"><Link to="/" className="text-white">Home</Link></li>
-            <li className="mr-4"><Link to="/shop" className="text-white">Shop</Link></li>
-            <li><Link to="/sell" className="text-white">Sell</Link></li>
-            {/* Add more navigation links as needed */}
+          <ul className="flex space-x-4">
+            <li><Link to="/shop">Shop</Link></li>
+            <li><Link to="/sell">Sell</Link></li>
+            <li><Link to="/cart">Cart</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Signup</Link></li>
           </ul>
         </nav>
       </div>
