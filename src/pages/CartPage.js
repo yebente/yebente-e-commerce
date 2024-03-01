@@ -1,45 +1,42 @@
 import React, { useState } from 'react';
 
 function CartPage() {
-  // Mock data for cart items (replace with actual data from your backend)
+  // Dummy cart data for demonstration
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Product 1', price: 19.99, quantity: 2 },
+    { id: 1, name: 'Product 1', price: 10.99, quantity: 2 },
     { id: 2, name: 'Product 2', price: 24.99, quantity: 1 },
-    // Add more cart items as needed
+    { id: 3, name: 'Product 3', price: 14.99, quantity: 3 }
   ]);
 
-  // Function to calculate total price of items in cart
-  const calculateTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+  // Function to calculate total price of items in the cart
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
   };
 
   // Function to remove item from cart
-  const removeItem = (itemId) => {
-    setCartItems(cartItems.filter(item => item.id !== itemId));
+  const removeFromCart = (id) => {
+    setCartItems(cartItems.filter(item => item.id !== id));
   };
 
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <div>
-          {cartItems.map(item => (
-            <div key={item.id} className="flex justify-between items-center border-b border-gray-300 py-2">
-              <div>
-                <h3 className="font-bold">{item.name}</h3>
-                <p>Price: ${item.price.toFixed(2)}</p>
-                <p>Quantity: {item.quantity}</p>
-              </div>
-              <button onClick={() => removeItem(item.id)} className="text-red-500">Remove</button>
+      <div className="grid grid-cols-1 gap-4">
+        {cartItems.map(item => (
+          <div key={item.id} className="flex items-center justify-between bg-gray-100 p-4 rounded-lg">
+            <div>
+              <h3 className="text-lg font-medium">{item.name}</h3>
+              <p className="text-gray-500">${item.price.toFixed(2)} x {item.quantity}</p>
             </div>
-          ))}
-          <div className="mt-4">
-            <p className="font-bold">Total: ${calculateTotalPrice()}</p>
+            <div>
+              <button onClick={() => removeFromCart(item.id)} className="text-red-500">Remove</button>
+            </div>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
+      <div className="mt-4">
+        <p className="text-xl font-bold">Total: ${calculateTotal()}</p>
+      </div>
     </div>
   );
 }
